@@ -1,0 +1,12 @@
+{
+  "name": "ChillBro",
+  "short_name": "ChillBro",
+  "description": "Hostel attendance, the chill way",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1208",
+  "theme_color": "#f97316",
+  "icons": [
+    { "src": "/vite.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

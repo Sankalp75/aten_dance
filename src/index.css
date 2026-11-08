@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --color-chill-50: #fff7ed;
+  --color-chill-100: #ffedd5;
+  --color-chill-200: #fed7aa;
+  --color-chill-300: #fdba74;
+  --color-chill-400: #fb923c;
+  --color-chill-500: #f97316;
+  --color-chill-600: #ea580c;
+  --color-chill-700: #c2410c;
+  --color-chill-800: #9a3412;
+  --color-chill-900: #7c2d12;
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #1a1208;
+  color: #fef3e2;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* warm dark cozy theme */
+.bg-chill { background: linear-gradient(180deg, #2a1a0a 0%, #1a1208 100%); }
+
+.card {
+  background: rgba(255, 247, 237, 0.06);
+  border: 1px solid rgba(251, 146, 60, 0.18);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(8px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #fb923c, #f97316);
+  color: #1a1208;
+  font-weight: 700;
+  border-radius: 0.9rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-primary:active { transform: scale(.97); }
+.btn-primary:hover { box-shadow: 0 8px 24px rgba(249,115,22,.35); }
+
+.pin-key {
+  background: rgba(255,247,237,.08);
+  border: 1px solid rgba(251,146,60,.25);
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  transition: background .12s ease, transform .12s ease;
+}
+.pin-key:active { transform: scale(.92); background: rgba(251,146,60,.35); }
+
+.mascot-bob { animation: bob 2.4s ease-in-out infinite; }
+@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+.shake { animation: shake .4s ease; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
+.confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 9999; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: rgba(251,146,60,.3); border-radius: 3px; }
