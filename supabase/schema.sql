@@ -1,5 +1,4 @@
--- ChillBro schema for Supabase
--- Run in Supabase SQL editor
+-- ChillBro schema for Supabase (idempotent — safe to re-run)
 
 create table if not exists public.students (
   id text primary key,
@@ -25,14 +24,22 @@ create table if not exists public.admins (
   pin text not null
 );
 
--- RLS: open for anon (demo). Tighten in production.
+-- RLS
 alter table public.students enable row level security;
 alter table public.attendance enable row level security;
 alter table public.admins enable row level security;
+
+-- Drop existing policies (idempotent) then recreate
+drop policy if exists "anon all students" on public.students;
+drop policy if exists "anon all attendance" on public.attendance;
+drop policy if exists "anon all admins" on public.admins;
 
 create policy "anon all students" on public.students for all using (true) with check (true);
 create policy "anon all attendance" on public.attendance for all using (true) with check (true);
 create policy "anon all admins" on public.admins for all using (true) with check (true);
 
--- Realtime
-alter publication supabase_realtime add table public.attendance;
+-- Realtime (ignore if already added)
+do $$ begin
+  alter publication supabase_realtime add table public.attendance;
+exception when duplicate_object then null;
+end $$;

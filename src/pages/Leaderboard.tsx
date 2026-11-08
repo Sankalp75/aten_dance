@@ -4,7 +4,7 @@ import { fetchStudentsFromCloud, fetchAllAttendanceCloud } from '../lib/sync'
 import { getCachedStudents } from '../lib/offline'
 import { computeStreak } from '../lib/stats'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, Flame, Trophy, History as HIcon, Users } from 'lucide-react'
+import { ArrowLeft, Flame, Trophy, Users } from 'lucide-react'
 
 interface Row { id: string; name: string; room: string; streak: number; total: number }
 
@@ -59,7 +59,7 @@ export default function Leaderboard() {
       </div>
       <nav className="fixed bottom-0 left-0 right-0 bg-black/60 backdrop-blur border-t border-orange-400/20 flex justify-around py-2">
         <button onClick={() => nav('/')} className="flex flex-col items-center text-orange-200/70 text-xs"><Flame size={18} /> Home</button>
-        <button onClick={() => nav('/history')} className="flex flex-col items-center text-orange-200/70 text-xs"><HIcon size={18} /> History</button>
+        <button onClick={() => nav('/people')} className="flex flex-col items-center text-orange-200/70 text-xs"><Users size={18} /> People</button>
         <button onClick={() => nav('/badges')} className="flex flex-col items-center text-orange-200/70 text-xs"><Trophy size={18} /> Badges</button>
         <button onClick={() => nav('/leaderboard')} className="flex flex-col items-center text-orange-300 text-xs"><Users size={18} /> Board</button>
       </nav>

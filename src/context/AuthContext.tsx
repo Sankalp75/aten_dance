@@ -24,7 +24,7 @@ interface AuthState {
 
 const Ctx = createContext<AuthState | null>(null)
 
-const ADMIN_PIN = (import.meta.env.VITE_ADMIN_PIN as string) || '1234'
+const ADMIN_PIN = (import.meta.env.VITE_ADMIN_PIN as string) || (DEMO ? '1234' : '')
 const SESSION_KEY = 'chillbro_session'
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -74,16 +74,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const loginAdmin = useCallback(async (pin: string) => {
-    // try supabase admins table
     if (supabase) {
-      const { data } = await supabase.from('admins').select('*').eq('pin', pin).limit(1)
-      if (data && data.length > 0) {
-        setIsAdmin(true)
-        persist({ type: 'admin' })
-        return { ok: true }
+      try {
+        const { data } = await supabase.from('admins').select('*').eq('pin', pin).limit(1)
+        if (data && data.length > 0) {
+          setIsAdmin(true)
+          persist({ type: 'admin' })
+          return { ok: true }
+        }
+      } catch (e) {
+        console.warn('admin lookup failed', e)
       }
     }
-    if (pin === ADMIN_PIN) {
+    if (ADMIN_PIN && pin === ADMIN_PIN) {
       setIsAdmin(true)
       persist({ type: 'admin' })
       return { ok: true }

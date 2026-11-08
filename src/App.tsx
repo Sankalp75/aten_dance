@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './context/AuthContext'
 import Login from './pages/Login'
 import Home from './pages/Home'
-import History from './pages/History'
+import People from './pages/People'
 import Badges from './pages/Badges'
 import Leaderboard from './pages/Leaderboard'
 import AdminDashboard from './pages/AdminDashboard'
@@ -27,7 +27,7 @@ export default function App() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<StudentGuard><Home /></StudentGuard>} />
-      <Route path="/history" element={<StudentGuard><History /></StudentGuard>} />
+      <Route path="/people" element={<StudentGuard><People /></StudentGuard>} />
       <Route path="/badges" element={<StudentGuard><Badges /></StudentGuard>} />
       <Route path="/leaderboard" element={<StudentGuard><Leaderboard /></StudentGuard>} />
       <Route path="/admin" element={<AdminGuard><AdminDashboard /></AdminGuard>} />

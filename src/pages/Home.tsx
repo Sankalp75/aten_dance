@@ -8,7 +8,7 @@ import Mascot from '../components/Mascot'
 import Countdown from '../components/Countdown'
 import confetti from 'canvas-confetti'
 import { toast } from 'sonner'
-import { Flame, Trophy, History as HistoryIcon, Users, LogOut } from 'lucide-react'
+import { Flame, Trophy, Users, LogOut } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
@@ -143,7 +143,7 @@ export default function Home() {
 
       <nav className="fixed bottom-0 left-0 right-0 bg-black/60 backdrop-blur border-t border-orange-400/20 flex justify-around py-2">
         <button onClick={() => nav('/')} className="flex flex-col items-center text-orange-300 text-xs"><Flame size={18} /> Home</button>
-        <button onClick={() => nav('/history')} className="flex flex-col items-center text-orange-200/70 text-xs"><HistoryIcon size={18} /> History</button>
+        <button onClick={() => nav('/people')} className="flex flex-col items-center text-orange-200/70 text-xs"><Users size={18} /> People</button>
         <button onClick={() => nav('/badges')} className="flex flex-col items-center text-orange-200/70 text-xs"><Trophy size={18} /> Badges</button>
         <button onClick={() => nav('/leaderboard')} className="flex flex-col items-center text-orange-200/70 text-xs"><Users size={18} /> Board</button>
       </nav>
