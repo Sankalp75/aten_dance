@@ -14,14 +14,21 @@ A playful, offline-first hostel attendance web app. Students mark attendance fro
 - PWA: installable, service worker for offline shell
 - Web push reminder ready (requires Supabase Edge Function + VAPID keys)
 
-## Run locally (demo mode)
+## Run locally
 
-No Supabase needed — runs with seeded demo students (PIN `1234`, admin PIN `1234`).
+1. Copy env file:
+   ```bash
+   cp .env.example .env
+   ```
+2. Set `VITE_ADMIN_PIN` to a PIN of your choice (required for warden login).
+   Optionally set `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` for cloud sync.
+3. Run:
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-```bash
-npm install
-npm run dev
-```
+There are no pre-seeded demo students or hardcoded credentials. Add students via the warden panel (Manage Students → Add / Import CSV).
 
 Demo students: `H001`..`H005`, PIN `1234`. Admin PIN `1234`.
 

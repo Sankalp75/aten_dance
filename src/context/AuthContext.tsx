@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react'
 import { supabase, DEMO } from '../lib/supabase'
 import { getCachedStudent, cacheStudents } from '../lib/offline'
-import { seedDemoIfNeeded } from '../lib/demoSeed'
 
 export interface Student {
   id: string
@@ -24,7 +23,7 @@ interface AuthState {
 
 const Ctx = createContext<AuthState | null>(null)
 
-const ADMIN_PIN = (import.meta.env.VITE_ADMIN_PIN as string) || (DEMO ? '1234' : '')
+const ADMIN_PIN = (import.meta.env.VITE_ADMIN_PIN as string) || ''
 const SESSION_KEY = 'chillbro_session'
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -34,7 +33,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     (async () => {
-      if (DEMO) await seedDemoIfNeeded()
       try {
         const raw = localStorage.getItem(SESSION_KEY)
         if (raw) {
